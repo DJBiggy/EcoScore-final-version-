@@ -18,18 +18,17 @@ class LoginViewController: UIViewController {
         signIn()
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.hidesBackButton = true
         
             
        
     }
     
     func signIn() {
-     let email: String = emailfield.text ?? ""
-//        let email = "ww"
+        let email: String = emailfield.text ?? ""
         let pswrd: String = passwordfield.text ?? ""
         Auth.auth().signIn(withEmail: email, password: pswrd) { [weak self] authResult, error in
           guard let strongSelf = self else { return }
@@ -40,35 +39,3 @@ class LoginViewController: UIViewController {
 
 
 }
-
-class SignUp: UIViewController {
-    @IBOutlet var emailfield: UITextField!
-    @IBOutlet var passwordfield: UITextField!
-    @IBOutlet var cnpasswordfield: UITextField!
-    @IBAction func nextButtonTapped(_ sender: UIButton) {
-        createUser()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-            
-        
-       
-    }
-
-    func createUser() {
-        //let email: String = emailfield.text ?? ""
-        let email = "dd"
-        var pswrd: String = ""
-        if (passwordfield.text == cnpasswordfield.text){
-            pswrd = passwordfield.text ?? ""
-        }
-        Auth.auth().createUser(withEmail: email, password: pswrd) { authResult, error in
-            if let error = error {
-            } else {
-                self.performSegue(withIdentifier: "backtoSignIn", sender: self)
-            }
-        }
-    }
-}
-

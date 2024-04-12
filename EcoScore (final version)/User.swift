@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct User: Codable {
+    static var username: String = ""
+    static var password: String = ""
+    static var email: String = ""
+}
+
+
